@@ -47,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
             // ...then this searches the components on the gameobject and gets a reference to the CharacterController class
             characterController = GetComponent<CharacterController>();
         }
+
+        // This locks the position of the cursor.
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
