@@ -9,6 +9,7 @@ TagManager:
   - CheckpointOne
   - SpawnTwo
   - Manager
+  - CheckpointTwo
   layers:
   - Default
   - TransparentFX

@@ -16,10 +16,33 @@ namespace MariaTsangaris
 
          */
 
+
         [SerializeField] private GameObject block;
         [SerializeField] private Material tangibleMaterial;
         [SerializeField] private Material intangibleMaterial;
 
+        [SerializeField] private float intangibilityCountdownTimer = 5f;
+        [SerializeField] private float intangibilityCountdownTimerReset = 5f;
+
+        //public void OnEnable()
+        //{
+        //    EventsManager.OnTransientBlockButtonPressEvent += TurnTangible;
+        //}
+
+        //public void OnDisable()
+        //{
+        //    EventsManager.OnTransientBlockButtonPressEvent += TurnTangible;
+        //}
+
+        //private void Update()
+        //{
+        //    intangibilityCountdownTimer -= Time.deltaTime;
+
+        //    if(intangibilityCountdownTimer < 0 && block.GetComponent<BoxCollider>(.enabled == true)
+        //    {
+        //        TurnIntangible();
+        //    }
+            
 
         public void TurnTangible()
         {
