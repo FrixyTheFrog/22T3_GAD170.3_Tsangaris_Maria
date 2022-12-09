@@ -151,9 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef25b436ca613ac4ab2779d84bfb8b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnpoint: {fileID: 0}
+  spawnpointOne: {fileID: 0}
+  spawnpointTwo: {fileID: 0}
   playerTransform: {fileID: 5922946180803193597}
   player: {fileID: 0}
+  checkpointManager: {fileID: 0}
+  endButton: 0
+  myScene: Game
 --- !u!1 &9217869241481998552
 GameObject:
   m_ObjectHideFlags: 0

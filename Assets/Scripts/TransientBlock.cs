@@ -16,49 +16,47 @@ namespace MariaTsangaris
 
          */
 
+        public GameObject buttonManager;
+        public bool intangible;
 
         [SerializeField] private GameObject block;
         [SerializeField] private Material tangibleMaterial;
         [SerializeField] private Material intangibleMaterial;
 
-        [SerializeField] private float intangibilityCountdownTimer = 5f;
-        [SerializeField] private float intangibilityCountdownTimerReset = 5f;
-
-        //public void OnEnable()
-        //{
-        //    EventsManager.OnTransientBlockButtonPressEvent += TurnTangible;
-        //}
-
-        //public void OnDisable()
-        //{
-        //    EventsManager.OnTransientBlockButtonPressEvent += TurnTangible;
-        //}
-
-        //private void Update()
-        //{
-        //    intangibilityCountdownTimer -= Time.deltaTime;
-
-        //    if(intangibilityCountdownTimer < 0 && block.GetComponent<BoxCollider>(.enabled == true)
-        //    {
-        //        TurnIntangible();
-        //    }
-            
-
-        public void TurnTangible()
+        private void Start()
         {
-            // If the box collider is enbaled...
-            if(block.GetComponent<BoxCollider>().enabled == true)
-            {
-                // ...disable the box collider
-                block.GetComponent<BoxCollider>().enabled = false;
+            buttonManager = GameObject.FindWithTag("Button");
 
-                // ...and chnage the material to "Intangible"
-                block.GetComponent<MeshRenderer>().material = intangibleMaterial;
-
-            }
+            intangible = false;
         }
 
-        private void TurnIntangible()
+        public void OnEnable()
+        {
+            // The blocks will be called to turn tangible.
+            EventsManager.OnTransientBlockButtonPressEvent += TurnTangible;
+        }
+
+        public void OnDisable()
+        {
+            // The blocks won't be called to turn tangible.
+            EventsManager.OnTransientBlockButtonPressEvent -= TurnTangible;
+        }
+
+        private void Update()
+        {
+            // When the timer is less than zero set the blocks back to intangible.
+            if (buttonManager.GetComponent<InteractableButton>().blockTimer <= 0 && intangible == true)
+            {
+                TurnIntangible();
+
+                intangible = false;
+
+            }
+
+        }
+
+
+            public void TurnTangible()
         {
             // If the box collider is disabled...
             if (block.GetComponent<BoxCollider>().enabled == false)
@@ -68,6 +66,22 @@ namespace MariaTsangaris
 
                 // ...and chnage the material to "Tangible"
                 block.GetComponent<MeshRenderer>().material = tangibleMaterial;
+
+                intangible = true;
+
+            }
+        }
+
+        private void TurnIntangible()
+        {
+            // If the box collider is enbaled...
+            if (block.GetComponent<BoxCollider>().enabled == true)
+            {
+                // ...disable the box collider
+                block.GetComponent<BoxCollider>().enabled = false;
+
+                // ...and chnage the material to "Intangible"
+                block.GetComponent<MeshRenderer>().material = intangibleMaterial;
 
             }
         }
